@@ -60,13 +60,6 @@ public class MenuController {
                     menu.setTenMon(jtfTenMon.getText());
                     menu.setSoLuongMon(Integer.parseInt(jtfSoLuongMon.getText()));
                     menu.setGiaMon(Integer.parseInt(jtfGiaMon.getText()));
-
-                    int lastId = menuService.createOrUpdate(menu);
-                    if (lastId > 0) {
-                        menu.setMaMon(lastId);
-                        jtfMaMon.setText("" + lastId);
-                        jlbMsg.setText("Cập nhật thành công!");
-                    }
                 }
 
             }

@@ -18,7 +18,7 @@ public class MenuImpl implements MenuDAO {
     public List<Menu> getList() {
         try {
             Connection cons = DBConnect.getConnection();
-            String sql = "SELECT * FROM thuc_don";
+            String sql = "SELECT * FROM drink";
             List<Menu> list = new ArrayList<>();
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
@@ -26,7 +26,6 @@ public class MenuImpl implements MenuDAO {
                 Menu menu = new Menu();
                 menu.setMaMon(rs.getInt("maMon"));
                 menu.setTenMon(rs.getString("tenMon"));
-                menu.setSoLuongMon(rs.getInt("soLuongMon"));
                 menu.setGiaMon(rs.getInt("giaMon"));
                 list.add(menu);
             }
@@ -44,7 +43,7 @@ public class MenuImpl implements MenuDAO {
     public static void removeList(int id) {
         try {
             Connection cons = DBConnect.getConnection();
-            String sql = "DELETE FROM thuc_don where maMon = ?";
+            String sql = "DELETE FROM drink where id = ?";
             PreparedStatement ps = cons.prepareCall(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -57,12 +56,10 @@ public class MenuImpl implements MenuDAO {
     public static void insertList(Menu menu) {
         try {
             Connection cons = DBConnect.getConnection();
-            String sql = "INSERT INTO thuc_don(maMon, tenMon, soLuongMon, giaMon) VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO drink(price, name) VALUES(?, ?)";
             PreparedStatement ps = cons.prepareStatement(sql);
-            ps.setInt(1, menu.getMaMon());
-            ps.setString(2, menu.getTenMon());
-            ps.setInt(3, menu.getSoLuongMon());
-            ps.setInt(4, menu.getGiaMon());
+            ps.setString(1, menu.getTenMon());
+            ps.setInt(2, menu.getGiaMon());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,28 +67,20 @@ public class MenuImpl implements MenuDAO {
     }
 
     @Override
-    public int createOrUpdate(Menu menu) {
+    public void createOrUpdate(Menu menu) {
         try {
             Connection cons = DBConnect.getConnection();
-            String sql = "INSERT INTO thuc_don(maMon, tenMon, soLuongMon, giaMon) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE maMon = VALUES(maMon), tenMon = VALUES(tenMon), soLuongMon = VALUES(soLuongMon), giaMon = VALUES(giaMon)";
+            String sql = "INSERT INTO drink(price, name) VALUES(?, ?) ON DUPLICATE KEY UPDATE name = VALUES(name), price = VALUES(price)";
             PreparedStatement ps = cons.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, menu.getMaMon());
-            ps.setString(2, menu.getTenMon());
-            ps.setInt(3, menu.getSoLuongMon());
-            ps.setInt(4, menu.getGiaMon());
+            ps.setString(1, menu.getTenMon());
+            ps.setInt(2, menu.getGiaMon());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            int generatedKey = 0;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
-            }
             ps.close();
             cons.close();
-            return generatedKey;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return 0;
     }
 
     public static void main(String[] args) {

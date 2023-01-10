@@ -62,8 +62,7 @@ public class ClassTableModel {
                 obj[0] = menu.getMaMon();
                 obj[1] =(i+1);
                 obj[2] = menu.getTenMon();
-                obj[3] = menu.getSoLuongMon();
-                obj[4] = menu.getGiaMon();
+                obj[3] = menu.getGiaMon();
                 dtm.addRow(obj);
             }
         }

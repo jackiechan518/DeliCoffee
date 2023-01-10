@@ -24,8 +24,8 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public int createOrUpdate(Menu menu) {
-        return menuDAO.createOrUpdate(menu);
+    public void createOrUpdate(Menu menu) {
+        menuDAO.createOrUpdate(menu);
     }
 
 }

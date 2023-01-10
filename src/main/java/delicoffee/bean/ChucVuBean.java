@@ -1,9 +1,4 @@
 package delicoffee.bean;
-
-/**
- *
- * @author HOME
- */
 public class ChucVuBean {
     private String ngayBatDau;
     private int soLuongNhanVien;

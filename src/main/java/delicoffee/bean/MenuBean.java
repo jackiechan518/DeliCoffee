@@ -3,23 +3,17 @@ package delicoffee.bean;
 
 import java.util.Date;
 
-/**
- *
- * @author Long
- */
 public class MenuBean {
     private String maMon;
     private String tenMon;
-    private int soLuongMon ;
     private int giaMon;
 
     public MenuBean() {
     }
 
-    public MenuBean(String maMon, String tenMon, int soLuongMon, int giaMon) {
+    public MenuBean(String maMon, String tenMon, int giaMon) {
         this.maMon = maMon;
         this.tenMon = tenMon;
-        this.soLuongMon = soLuongMon;
         this.giaMon = giaMon;
     }
 
@@ -37,14 +31,6 @@ public class MenuBean {
 
     public void setTenMon(String tenMon) {
         this.tenMon = tenMon;
-    }
-
-    public int getSoLuongMon() {
-        return soLuongMon;
-    }
-
-    public void setSoLuongMon(int soLuongMon) {
-        this.soLuongMon = soLuongMon;
     }
 
     public int getGiaMon() {

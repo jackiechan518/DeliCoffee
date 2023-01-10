@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface MenuDAO {
     public List<Menu> getList();
-    public int createOrUpdate(Menu menu);
+    public void createOrUpdate(Menu menu);
 }

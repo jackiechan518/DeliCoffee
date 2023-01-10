@@ -13,8 +13,8 @@ public class DBConnect {
     public static Connection getConnection(){
         try{
             Connection cons = null;
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            cons = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/db_qlnv","root", "1234");
+            Class.forName("com.mysql.jdbc.Driver");
+            cons = DriverManager.getConnection("jdbc:mysql://localhost:3306/DeliCoffee","root", "28122003");
             return cons;
         } catch (Exception ex){
             ex.printStackTrace();
